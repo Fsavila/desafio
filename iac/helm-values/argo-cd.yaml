@@ -5,6 +5,8 @@ server:
     enabled: true
     ingressClassName: nginx
 configs:
+  cm:
+    timeout.reconciliation: 60s
   secret:
     argocdServerAdminPassword: ${bcrypt(argoAdminPassword)}
   params:

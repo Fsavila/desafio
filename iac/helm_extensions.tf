@@ -21,7 +21,22 @@ resource "helm_release" "argo_cd" {
   values = [
     templatefile("./helm-values/argo-cd.yaml", { argoAdminPassword = var.argoAdminPassword })
   ]
-  force_update = true
 
   depends_on = [ aws_eks_cluster.eks_cluster ]
+}
+
+resource "helm_release" "custom_resources" {
+  name             = "custom-resources"
+  repository       = "https://bedag.github.io/helm-charts/"
+  chart            = "raw"
+  version          = "2.0.0"
+  namespace        = "default"
+
+  values = [
+    file("./helm-values/custom-resources.yaml")
+  ]
+  depends_on = [ 
+    aws_eks_cluster.eks_cluster,
+    helm_release.argo_cd
+  ]
 }
