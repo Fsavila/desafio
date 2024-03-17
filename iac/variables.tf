@@ -15,7 +15,7 @@ variable "cluster_name" {
 
 variable "instance_types" {
   type    = list(string)
-  default = ["t2.small", "t3.small"]
+  default = ["t2.small"]
 }
 
 variable "public_subnet_cidr" {
@@ -26,4 +26,9 @@ variable "public_subnet_cidr" {
 variable "private_subnet_cidr" {
   type = list(string)
   default = ["10.0.3.0/24", "10.0.4.0/24"]
+}
+
+variable "argoAdminPassword" {
+  type = string
+  description = "Password for argoCD admin"
 }
