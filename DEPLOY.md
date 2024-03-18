@@ -1,8 +1,8 @@
 # Deploy
 
-Para provisionamento dos recursos de infraestrutura, deve ser executado o código terraform disponivel no diretório **iac**, para facilitar a execução, pode ser utilizado o Makefile disponivel.
+Para provisionamento dos recursos de infraestrutura, deve ser executado o código terraform disponivel no diretório **iac**, para facilitar a execução, pode ser utilizado o Makefile disponivel na raiz do projeto.
 
-Para que o deploy seja executada de forma correta, existem alguns pré-requisitos que devem estar instalados na máquina que fará a execução:
+Para que o deploy seja executado de forma correta, existem alguns pré-requisitos que devem estar instalados na máquina que fará a execução:
   - Terraform
   - AWS cli
   - make
@@ -37,3 +37,4 @@ $ make destroy-infrastructure
 
 Para documentação do que será provisionado de infraestrutura, veja [aqui](https://github.com/Fsavila/desafio/blob/main/iac/README.md).
 
+O desenho da topologia da arquitetura criada pode ser visto aqui [aqui](https://github.com/Fsavila/desafio/blob/main/ARQUITETURA.md).
