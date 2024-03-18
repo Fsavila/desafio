@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: comentarios.avilait.com.br
+  - host: comentarios.felipeavila.com.br
     http:
       paths:
       - path: /
