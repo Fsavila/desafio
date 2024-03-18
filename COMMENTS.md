@@ -4,11 +4,13 @@ A ideia é propor uma arquitetura escalavel tanto de forma horizontal quanto ver
 
 ## Tecnologias
 
+Para este desafio será utilizado como Cloud provider a AWS devido ao maior conhecimento que tenho.
+
 Utilizarei Kubernetes para orquestração de containers e facilitação em criar uma arquitetura escalavel e de alta disponibilidade.
 
 Fiz reflexões de formas para disponibilizar o k8s, entre fazer o deploy do cluster com RKE2 em instancias EC2 ou utilizar kubernetes gerenciado da AWS(EKS). Optei por utilizar kubernetes gerenciado da AWS(EKS) primeiramente devido a facilidade ao subir e nao precisar gerenciar os control plane, alem disto, por questões de custo eu não precisaria manter EC2 on-demand para executar control plane e workers. Com o EKS consigo utilizar instancias spot para suportar o workload.
 
-Para fazer o deploy de infraestrutura, será utilizado Terraform que é uma ferramenta opensource para provisionamento de infraestrutura, optei devido a facilidade de uso e documentação.
+Para fazer o deploy de infraestrutura de forma automatizada, será utilizado Terraform que é uma ferramenta opensource para provisionamento de infraestrutura, optei devido a facilidade de uso e documentação.
 
 A ideia inicial do deploy de infraestrutura seria utilizar Atlantis para review do *plan* do terraform e apply em um pull request caso estivesse tudo correto, porém principalmente devido ao tempo restrito resolvi priorizar outras questões do desafio, então o deploy de infraestrutura é executado localmente, disponibilizei um Makefile com a opção de execução e algumas validações.
 
@@ -16,7 +18,9 @@ Para deploy de aplicações, optei por utilizar da estrategia de GitOps para tor
 
 Optei para fazer a distribuição de carga e expor os serviços externamente utilizar nginx-ingress principalmente devido a facilidade no uso para otimização de tempo, em uma solução visando ambiente produto que requer features avançadas, poderia optar por kong Ingress ou Istio.
 
-Obs: Não utilizei ECR pois nos manifestos que ficam neste [repositório](https://github.com/Fsavila/desafio-apps) iria expor algumas informações como account_id, então por questão de segurança optei por utilizar um repositório publico no dockerhub, mas a logica segue a mesma, alem de evitar um custo desnecessario. :D
+Para observabilidade, optei pela stack de Prometheus/Grafana que tenho maior familiariadade, configurei para capturar metricas do nginx e as internas do cluster.
+
+Obs: Não utilizei ECR pois nos manifestos que ficam neste [repositório](https://github.com/Fsavila/desafio-apps) iria expor algumas informações como account_id, então por questão de segurança optei por utilizar um repositório publico no DockerHub, mas a logica segue a mesma, alem de evitar um custo desnecessario. :D
 
 Obs²: Este [repositório](https://github.com/Fsavila/desafio-apps) contem apenas os manifestos das aplicações que serão realizadas o deploy no cluster, todo o código esta neste repo central. Optei por separar o repositório dos manifestos para o ArgoCD devido a complexidade que iria gerar caso eu colocasse em um diretório neste repo.
 
