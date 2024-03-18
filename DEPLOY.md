@@ -29,6 +29,10 @@ $ make deploy-infrastructure
 Obs: Revisar as alterações que serão feitas na infraestrutura, o planejado é da criação de 31 recursos.
 
 
+Depois de finalizado o deploy de infraestrutura, basta neste repositório gerar uma nova tag no formato x.x.x(Exemplo: 2.0.0) e aguarde a execução da action.
+
+A action vai fazer o build da imagem e push, bem como enviar os manifestos deste [diretório](https://github.com/Fsavila/desafio/tree/main/manifests) para este [repositório](https://github.com/Fsavila/desafio/tree/main/manifests), neste momento o ArgoCD fará o deploy no cluster.
+
 Para destruir a infraestrutura, basta executar o seguinte comando:
 
 ```
