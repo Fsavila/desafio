@@ -33,6 +33,10 @@ Depois de finalizado o deploy de infraestrutura, basta neste repositório gerar 
 
 A action vai fazer o build da imagem e push, bem como enviar os manifestos deste [diretório](https://github.com/Fsavila/desafio/tree/main/manifests) para este [repositório](https://github.com/Fsavila/desafio/tree/main/manifests), neste momento o ArgoCD fará o deploy no cluster.
 
+Para ver as aplicações que estão implantadas no cluster, basta acessar o ArgoCD através da URL http://argocd.felipeavila.com.br/ com o usuario admin e senha configurada no ato de deploy e algo semelhante a isto deve ser apresentado:
+
+![Argo](./images/argo.png)
+
 Para destruir a infraestrutura, basta executar o seguinte comando:
 
 ```
