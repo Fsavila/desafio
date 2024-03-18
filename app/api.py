@@ -49,3 +49,8 @@ def api_comment_list(content_id):
                 'message': message,
                 }
         return jsonify(response), 404
+
+#endpoint de healthcheck para possibilitar liveness/readiness probe
+@app.route('/healthcheck')
+def healthcheck():
+    return 'OK'
