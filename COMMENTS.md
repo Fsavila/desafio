@@ -16,6 +16,8 @@ A ideia inicial do deploy de infraestrutura seria utilizar Atlantis para review 
 
 Para deploy de aplicações, optei por utilizar da estrategia de GitOps para tornar o ambiente o mais resiliente possivel e ter padronização nas configurações. Utilizei ArgoCD visando criar uma estrutura que seja expansivel para outras apps. A ideia inicial era utilizar helm charts para renderizar os templates e gerar os manifestos de acordo com os *values* passados para cada aplicação, porém acabou faltando tempo para execução desta etapa então optei por manifestos simples. Além disto, é utilizado Github Actions para build da imagem e push no repositório.
 
+Como ferramenta de CI/CD optei por utilizar o Github Actions devido a feature de "functions" reutilizaveis que poderia me auxiliar na agilidade no desenvolvimento do projeto em alguns steps.
+
 Optei para fazer a distribuição de carga e expor os serviços externamente utilizar nginx-ingress principalmente devido a facilidade no uso para otimização de tempo, em uma solução visando ambiente produtivo que requer features avançadas, poderia optar por kong Ingress ou Istio.
 
 Para observabilidade, optei pela stack de Prometheus/Grafana que tenho maior familiariadade, configurei para capturar metricas do nginx e as internas do cluster.
