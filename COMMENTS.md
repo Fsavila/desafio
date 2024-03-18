@@ -11,3 +11,9 @@ Fiz reflexões de formas para disponibilizar o k8s, entre fazer o deploy do clus
 Para fazer o deploy de infraestrutura, será utilizado terraform que é uma ferramenta opensource para provisionamento de infraestrutura, optei devido a facilidade de uso e documentação.
 
 O processo todo de deploy de infra via Github actions, com atlantis para review de Pull requests com diff de apply do Terraform. Para deploy de aplicações, será utilizado ArgoCD visando criar uma estrutura que seja expansivel para outras apps.
+
+
+
+****** organização do codigo terraform em modulos
+
+****** utilizado repositorio publico no docker hub para nao expor em plain text nos manifestos o account_id, region da minha conta na aws caso fosse utilizado ECR.
