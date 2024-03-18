@@ -17,4 +17,4 @@ spec:
       - name: comentarios
         image: fsavila/desafio-app:$TAG
         ports:
-        - containerPort: 80
+        - containerPort: 8000
