@@ -9,7 +9,10 @@ resource "helm_release" "ingress_nginx" {
   values = [
     file("./helm-values/ingress-nginx.yaml")
   ]
-  depends_on = [ aws_eks_cluster.eks_cluster ]
+  depends_on = [ 
+    aws_eks_cluster.eks_cluster,
+    aws_eks_node_group.eks_managed_node_group
+  ]
 }
 
 resource "helm_release" "argo_cd" {
@@ -25,7 +28,10 @@ resource "helm_release" "argo_cd" {
     templatefile("./helm-values/argo-cd.yaml", { argoAdminPassword = var.argoAdminPassword })
   ]
 
-  depends_on = [ aws_eks_cluster.eks_cluster ]
+  depends_on = [ 
+    aws_eks_cluster.eks_cluster,
+    aws_eks_node_group.eks_managed_node_group
+  ]
 }
 
 resource "helm_release" "custom_resources" {
@@ -40,6 +46,7 @@ resource "helm_release" "custom_resources" {
   ]
   depends_on = [ 
     aws_eks_cluster.eks_cluster,
+    aws_eks_node_group.eks_managed_node_group,
     helm_release.argo_cd
   ]
 }
@@ -56,7 +63,8 @@ resource "helm_release" "prometheus" {
     file("./helm-values/prometheus.yaml")
   ]
   depends_on = [ 
-    aws_eks_cluster.eks_cluster
+    aws_eks_cluster.eks_cluster,
+    aws_eks_node_group.eks_managed_node_group
   ]
 }
 
@@ -73,6 +81,7 @@ resource "helm_release" "grafana" {
 
   ]
   depends_on = [ 
-    aws_eks_cluster.eks_cluster
+    aws_eks_cluster.eks_cluster,
+    aws_eks_node_group.eks_managed_node_group
   ]
 }

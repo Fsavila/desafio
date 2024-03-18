@@ -1,5 +1,5 @@
 global:
-  domain: argocd.avilait.com.br
+  domain: argocd.felipeavila.com.br
 server:
   ingress:
     enabled: true

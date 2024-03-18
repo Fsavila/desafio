@@ -7,5 +7,8 @@ resource "aws_eks_cluster" "eks_cluster" {
     subnet_ids = aws_subnet.eks_private_subnet.*.id
   }
 
-  depends_on = [aws_iam_role.eks_role]
+  depends_on = [
+    aws_iam_role.eks_role,
+    aws_iam_role_policy_attachment.eks-policy-attachment
+  ]
 }

@@ -22,3 +22,5 @@ O processo todo de deploy de infra via Github actions, com atlantis para review 
 
 
 ****** importar grafana dashboard e setar como default
+
+****** liveness probe/readiness probe
