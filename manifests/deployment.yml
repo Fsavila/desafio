@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comentarios
+  namespace: comentarios
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comentarios
+  template:
+    metadata:
+      labels:
+        app: comentarios
+    spec:
+      containers:
+      - name: comentarios
+        image: fsavila/desafio-app:1.0.0
+        ports:
+        - containerPort: 80
