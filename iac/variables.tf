@@ -32,3 +32,8 @@ variable "argoAdminPassword" {
   type = string
   description = "Password for argoCD admin"
 }
+
+variable "grafanaAdminPassword" {
+  type = string
+  description = "Password for grafana admin"
+}

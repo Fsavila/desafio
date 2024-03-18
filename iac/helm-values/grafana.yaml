@@ -1,0 +1,14 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - grafana.felipeavila.com.br
+adminUser: admin
+adminPassword: ${grafanaAdminPassword}
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server # vai por dentro do cluster, estao no mesmo namespace

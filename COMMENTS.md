@@ -17,3 +17,8 @@ O processo todo de deploy de infra via Github actions, com atlantis para review 
 ****** organização do codigo terraform em modulos
 
 ****** utilizado repositorio publico no docker hub para nao expor em plain text nos manifestos o account_id, region da minha conta na aws caso fosse utilizado ECR.
+
+****** servicos internos(argo, prometheus, grafana) em um LB interno *melhoria*
+
+
+****** importar grafana dashboard e setar como default
