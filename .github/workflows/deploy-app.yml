@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Change TAG version on deployment
+        run: sed -i 's/$TAG/${{ github.ref_name }}/g' ./manifests/deployment.yml
       - name: Push manifests to desafio-apps apps-repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
