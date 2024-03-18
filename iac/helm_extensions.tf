@@ -6,6 +6,9 @@ resource "helm_release" "ingress_nginx" {
   namespace        = "ingress-nginx"
   create_namespace = true
 
+  values = [
+    file("./helm-values/ingress-nginx.yaml")
+  ]
   depends_on = [ aws_eks_cluster.eks_cluster ]
 }
 
@@ -38,5 +41,38 @@ resource "helm_release" "custom_resources" {
   depends_on = [ 
     aws_eks_cluster.eks_cluster,
     helm_release.argo_cd
+  ]
+}
+
+resource "helm_release" "prometheus" {
+  name             = "prometheus"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  chart            = "prometheus"
+  version          = "25.17.0"
+  namespace        = "monitoring"
+  create_namespace = true
+
+  values = [
+    file("./helm-values/prometheus.yaml")
+  ]
+  depends_on = [ 
+    aws_eks_cluster.eks_cluster
+  ]
+}
+
+resource "helm_release" "grafana" {
+  name             = "grafana"
+  repository       = "https://grafana.github.io/helm-charts"
+  chart            = "grafana"
+  version          = "7.3.7"
+  namespace        = "monitoring"
+  create_namespace = true
+
+  values = [
+        templatefile("./helm-values/grafana.yaml", { grafanaAdminPassword = var.grafanaAdminPassword })
+
+  ]
+  depends_on = [ 
+    aws_eks_cluster.eks_cluster
   ]
 }
